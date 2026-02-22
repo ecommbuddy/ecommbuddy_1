@@ -76,14 +76,14 @@ const Contact = () => {
               <div className="space-y-4 mb-8">
                 <div className="flex items-center space-x-3">
                   <Mail className="w-5 h-5 text-primary" />
-                  <a href="mailto:hello@ecommbuddy.in" className="text-primary hover:text-accent transition-colors">
-                    hello@ecommbuddy.in
+                  <a href="mailto:harshit@ecommbuddy.in" className="text-primary hover:text-accent transition-colors">
+                    harshit@ecommbuddy.in
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
                   <Phone className="w-5 h-5 text-primary" />
-                  <a href="tel:+919876543210" className="text-primary hover:text-accent transition-colors">
-                    +91 98765 43210
+                  <a href="tel:+916388201024" className="text-primary hover:text-accent transition-colors">
+                    +91 63882 01024
                   </a>
                 </div>
                 <div className="flex items-center space-x-3">
