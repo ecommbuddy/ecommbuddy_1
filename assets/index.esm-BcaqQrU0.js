@@ -1,4 +1,4 @@
-import{c as wt}from"./index-CdqLOZ5q.js";import{R as L}from"./animation-vendor-B_1vxNnv.js";/**
+import{c as wt}from"./index-gY6sJ96g.js";import{R as L}from"./animation-vendor-B_1vxNnv.js";/**
  * @license lucide-react v0.303.0 - ISC
  *
  * This source code is licensed under the ISC license.
