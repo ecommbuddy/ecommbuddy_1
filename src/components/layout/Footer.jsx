@@ -4,6 +4,8 @@ import AnimatedSection from '../ui/AnimatedSection'
 import logo from '/images/logo.svg'
 import { services } from '../../data/services'
 
+import QuickChat from '../ui/QuickChat'
+
 const Footer = () => {
   const companyLinks = [
     { name: 'Home', to: 'home' },
@@ -25,7 +27,8 @@ const Footer = () => {
   }
 
   return (
-    <footer className="bg-primary text-secondary">
+    <>
+      <footer className="bg-primary text-secondary">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-12 lg:py-16">
         <AnimatedSection>
           <div className="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-8 lg:gap-12 mb-12">
@@ -41,7 +44,7 @@ const Footer = () => {
               </p>
               <div className="flex items-center space-x-4">
                 <a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/ecommbuddy.in"
                   target="_blank"
                   rel="noopener noreferrer"
                   className="text-secondary hover:opacity-70 transition-opacity"
@@ -146,6 +149,8 @@ const Footer = () => {
         </AnimatedSection>
       </div>
     </footer>
+    <QuickChat />
+    </>
   )
 }
 

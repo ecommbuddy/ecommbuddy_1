@@ -17,8 +17,7 @@ const ServiceCard = ({ service, index, gifPath }) => {
 
   return (
     <div
-      className={`flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'
-        } items-center gap-4 lg:gap-16`}
+      className={`flex flex-col ${isEven ? 'lg:flex-row-reverse' : 'lg:flex-row'} items-center gap-4 lg:gap-16 px-4 md:px-8 lg:px-0`}
       style={{ width: '100%', padding: '12px 0 24px' }}
     >
       {/* GIF */}
@@ -41,7 +40,7 @@ const ServiceCard = ({ service, index, gifPath }) => {
       </div>
 
       {/* Text */}
-      <div className="w-full lg:w-1/2 flex flex-col justify-center items-start text-left">
+      <div className="w-full lg:w-1/2 flex flex-col justify-center items-start text-left pl-0 md:pl-8 lg:pl-12">
         <h3
           className="font-bold text-primary"
           style={{
@@ -201,7 +200,7 @@ const Services = () => {
         ─────────────────────────────────────────────────────────── */}
         <div
           ref={cardsAreaRef}
-          className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8"
+          className="max-w-7xl mx-auto px-4 sm:px-8 lg:px-8"
           style={{
             position: 'relative',
             overflow: isDesktop ? 'hidden' : 'visible',

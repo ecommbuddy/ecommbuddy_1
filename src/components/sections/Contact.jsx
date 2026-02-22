@@ -94,7 +94,7 @@ const Contact = () => {
 
               <div className="flex items-center space-x-4">
                 <motion.a
-                  href="https://instagram.com"
+                  href="https://www.instagram.com/ecommbuddy.in"
                   target="_blank"
                   rel="noopener noreferrer"
                   whileHover={{ scale: 1.1 }}
