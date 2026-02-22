@@ -247,7 +247,7 @@ const Services = () => {
       {/* ═══════════════════════════════════════════════════════════
           REST OF THE SECTION — scrolls normally after pin releases
       ══════════════════════════════════════════════════════════════ */}
-      <div className="bg-white py-8 lg:py-12">
+      <div className="bg-white pb-8 lg:pb-12">
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
 
           {/* ── Process Strip (unchanged) ────────────────────────── */}

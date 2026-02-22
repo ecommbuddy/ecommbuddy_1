@@ -79,7 +79,7 @@ const Hero = () => {
 
   return (
     <section
-      className="min-h-screen flex items-center justify-center bg-white"
+      className="flex items-center justify-center bg-white"
     >
       <div style={{ width: '100%' }}>
         <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8 py-20 lg:py-32">

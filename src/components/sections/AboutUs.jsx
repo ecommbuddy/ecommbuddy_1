@@ -29,7 +29,7 @@ const AboutUs = () => {
   ]
 
   return (
-    <section id="about" className="bg-highlight py-20 lg:py-32">
+    <section id="about" className="bg-highlight py-10 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         {/* Why Choose Section */}
         <div className="mb-20">

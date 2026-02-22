@@ -49,7 +49,7 @@ const Contact = () => {
   }
 
   return (
-    <section id="contact" className="bg-white py-20 lg:py-32">
+    <section id="contact" className="bg-white py-10 lg:py-20">
       <div className="max-w-7xl mx-auto px-4 sm:px-6 lg:px-8">
         <AnimatedSection className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl lg:text-5xl font-bold text-primary mb-4">
