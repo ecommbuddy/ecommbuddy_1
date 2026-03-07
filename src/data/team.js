@@ -1,7 +1,7 @@
 import mem3 from '/images/team/priyank.jpeg'
 import mem1 from '/images/team/member1.jpg'
 import mem2 from '/images/team/member2.jpg'
-import mem4 from '/images/team/member4.jpg'
+import mem4 from '/images/team/aditya.jpeg'
 import mem5 from '/images/team/member5.jpg'
 
 
