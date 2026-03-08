@@ -73,126 +73,6 @@ const ServiceCard = ({ service, index, gifPath }) => {
 }
 
 /* ─────────────────────────────────────────────────────────────
-   Mobile Services View — Scroll-Driven Stack Effect
-   ──────────────────────────────────────────────────────────── */
-const MobileServicesView = ({ services, serviceGifs }) => {
-  const [activeIndex, setActiveIndex] = useState(0)
-  const containerRef = useRef(null)
-
-  useEffect(() => {
-    const container = containerRef.current
-    if (!container) return
-
-    const handleScroll = () => {
-      const scrollY = container.scrollTop
-      const height = container.clientHeight
-      const newIndex = Math.round(scrollY / height)
-      if (newIndex >= 0 && newIndex < services.length) {
-        setActiveIndex(newIndex)
-      }
-    }
-
-    container.addEventListener('scroll', handleScroll, { passive: true })
-    return () => container.removeEventListener('scroll', handleScroll)
-  }, [services.length])
-
-  return (
-    <div className="relative w-full h-[100dvh] bg-black overflow-hidden">
-      
-      {/* ── Background Media Layer (Fixed underneath) ── */}
-      {services.map((service, index) => {
-        const isActive = activeIndex === index
-        const isPast = index < activeIndex
-        
-        return (
-          <div 
-            key={`bg-${service.id}`}
-            className="absolute inset-0 z-0 transition-opacity duration-700 ease-in-out bg-black"
-            style={{ 
-              opacity: isActive ? 1 : 0, 
-              // Keep old ones fully visible but behind the fading new ones
-              zIndex: isActive ? 2 : (isPast ? 1 : 0) 
-            }}
-          >
-            <img 
-              src={serviceGifs[index]} 
-              alt={`${service.title} background`}
-              className="w-full h-full object-cover object-center opacity-85"
-              loading="lazy"
-            />
-            {/* Dark Gradient Overlay */}
-            <div 
-              className="absolute inset-0"
-              style={{ background: 'linear-gradient(to top, rgba(0, 99, 66, 0.98) 0%, rgba(0, 99, 66, 0.5) 45%, transparent 100%)' }}
-            />
-          </div>
-        )
-      })}
-
-      {/* ── Foreground Scrolling Content Layer ── */}
-      {/* This is the invisible scroll track that the user actually swipes natively */}
-      <div 
-        ref={containerRef}
-        className="absolute inset-0 z-10 w-full h-full overflow-y-auto snap-y snap-mandatory"
-        style={{ scrollbarWidth: 'none', msOverflowStyle: 'none' }}
-      >
-        <style>{`.mobile-hide-scroll::-webkit-scrollbar { display: none; }`}</style>
-        
-        {services.map((service, index) => (
-          <div 
-            key={`content-${service.id}`} 
-            className="w-full h-[100dvh] snap-start relative flex flex-col justify-end mobile-hide-scroll px-6 pb-[10vh]"
-          >
-            {/* Content pinned to bottom inside the scrolling card */}
-            <div 
-              className="relative z-10 w-full transform transition-all duration-500 ease-out"
-              style={{ 
-                opacity: activeIndex === index ? 1 : 0,
-                transform: activeIndex === index ? 'translateY(0)' : 'translateY(20px)'
-              }}
-            >
-              <h3 className="text-[28px] font-bold text-white mb-3 leading-tight drop-shadow-md">
-                {service.title}
-              </h3>
-              <p className="text-white/90 text-[1.05rem] leading-relaxed mb-6 max-w-[90%] drop-shadow-sm font-medium">
-                {service.description}
-              </p>
-              
-              {service.features && service.features.length > 0 && (
-                <ul className="space-y-3">
-                  {service.features.map((feature, fIdx) => (
-                    <li key={fIdx} className="flex items-start">
-                      <span className="text-white mr-3 mt-1 shrink-0 drop-shadow-md">
-                        <svg className="w-5 h-5 drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]" fill="none" stroke="currentColor" viewBox="0 0 24 24"><path strokeLinecap="round" strokeLinejoin="round" strokeWidth="3" d="M5 13l4 4L19 7"></path></svg>
-                      </span>
-                      <span className="text-white text-[1rem] font-semibold drop-shadow-[0_2px_4px_rgba(0,0,0,0.8)]">{feature}</span>
-                    </li>
-                  ))}
-                </ul>
-              )}
-            </div>
-          </div>
-        ))}
-      </div>
-
-      {/* ── Scroll Pagination Dots ── */}
-      <div className="absolute right-4 top-1/2 -translate-y-1/2 z-20 flex flex-col gap-3 pointer-events-none">
-        {services.map((_, index) => (
-          <div 
-            key={`dot-${index}`}
-            className={`w-2 rounded-full transition-all duration-300 ${
-              activeIndex === index 
-                ? 'bg-white h-8 shadow-[0_0_10px_rgba(255,255,255,0.7)]' 
-                : 'bg-white/40 h-2 shadow-sm'
-            }`}
-          />
-        ))}
-      </div>
-    </div>
-  )
-}
-
-/* ─────────────────────────────────────────────────────────────
    Services section — GSAP ScrollTrigger pin + sequential stack
    ──────────────────────────────────────────────────────────── */
 const Services = () => {
@@ -222,31 +102,17 @@ const Services = () => {
   ]
 
   const [isDesktop, setIsDesktop] = useState(false)
-  const [isMobile, setIsMobile] = useState(false)
 
   useEffect(() => {
     if (typeof window === 'undefined') return
-    const mqDesktop = window.matchMedia('(min-width: 1024px)')
-    const mqMobile = window.matchMedia('(max-width: 768px)')
-    
-    const updateDesktop = () => setIsDesktop(mqDesktop.matches)
-    const updateMobile = () => setIsMobile(mqMobile.matches)
-    
-    updateDesktop()
-    updateMobile()
-    
-    if (mqDesktop.addEventListener) mqDesktop.addEventListener('change', updateDesktop)
-    else mqDesktop.addListener(updateDesktop)
-      
-    if (mqMobile.addEventListener) mqMobile.addEventListener('change', updateMobile)
-    else mqMobile.addListener(updateMobile)
-      
+    const mq = window.matchMedia('(min-width: 1024px)')
+    const update = () => setIsDesktop(mq.matches)
+    update()
+    if (mq.addEventListener) mq.addEventListener('change', update)
+    else mq.addListener(update)
     return () => {
-      if (mqDesktop.removeEventListener) mqDesktop.removeEventListener('change', updateDesktop)
-      else mqDesktop.removeListener(updateDesktop)
-        
-      if (mqMobile.removeEventListener) mqMobile.removeEventListener('change', updateMobile)
-      else mqMobile.removeListener(updateMobile)
+      if (mq.removeEventListener) mq.removeEventListener('change', update)
+      else mq.removeListener(update)
     }
   }, [])
 
@@ -290,9 +156,6 @@ const Services = () => {
           PINNED CONTAINER — This is what GSAP pins while the cards
           animate in. It contains both the heading and the card stack.
       ══════════════════════════════════════════════════════════════ */}
-      {isMobile ? (
-        <MobileServicesView services={services} serviceGifs={serviceGifs} />
-      ) : (
       <div
         ref={pinnedRef}
         style={{
@@ -379,7 +242,6 @@ const Services = () => {
           )}
         </div>
       </div>
-      )}
 
       {/* ═══════════════════════════════════════════════════════════
           REST OF THE SECTION — scrolls normally after pin releases
